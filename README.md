@@ -60,6 +60,7 @@ class AppKernel extends Kernel
 ma_tpe:
     login: "yourLoginAPI"
     key: "yourAPIkey"
+    firm: "yourFirmID"
 ```
 
 # Step 4: Enjoy !
@@ -68,7 +69,7 @@ The API is now reachable from the `matpe` service in your Controller or anywhere
 
 # Documentation
 
-## List all the contacts
+## List all the customers
 
 ```php
 <?php
@@ -77,11 +78,11 @@ The API is now reachable from the `matpe` service in your Controller or anywhere
 public function MaTPEAction() {
     $matpe = $this->get("matpe");
     
-    dump($matpe->listContacts());
+    dump($matpe->listCustomers());
 }
 ```
 
-## Create a contact
+## Create a customer
 
 
 ```php
@@ -91,7 +92,7 @@ public function MaTPEAction() {
 public function MaTPEAction() {
     $matpe = $this->get("matpe");
     
-    dump($matpe->createContact(array(
+    dump($matpe->createCustomer(array(
         'name' => 'New Contact', // Required
         'email' => 'fakemail@test.com',
         'contry_code' => 'fr' // Required
@@ -99,7 +100,7 @@ public function MaTPEAction() {
 }
 ```
 
-## Get a contact
+## Get a customer
 
 ```php
 <?php
@@ -108,10 +109,10 @@ public function MaTPEAction() {
 public function MaTPEAction() {
     $matpe = $this->get("matpe");
     
-    dump($matpe->getContact(13423);
+    dump($matpe->getCustomer(13423);
 }
 ```
-## Update a contact
+## Update a customer
 
 ```php
 <?php
@@ -120,7 +121,7 @@ public function MaTPEAction() {
 public function MaTPEAction() {
     $matpe = $this->get("matpe");
     
-    dump($matpe->updateContact(13423, array(
+    dump($matpe->updateCustomer(13423, array(
         'name' => 'New name',
         'email' => 'anotheremail@test.com'
     )));
@@ -140,7 +141,7 @@ public function MaTPEAction() {
 }
 ```
 
-## List all the invoices of a contact
+## List all the invoices of a customer
 
 ```php
 <?php
@@ -163,7 +164,7 @@ public function MaTPEAction() {
 public function MaTPEAction() {
     $matpe = $this->get("matpe");
     
-    $contactID = 12345;
+    $customerId = 12345;
     $datetime = new \DateTime();
     
     $invoice = array(
@@ -188,7 +189,7 @@ public function MaTPEAction() {
         )
     );
     
-    dump($matpe->createInvoice($contactID, $invoice, $items));
+    dump($matpe->createInvoice($customerId, $invoice, $items));
 }
 ```
 
@@ -204,7 +205,7 @@ public function MaTPEAction() {
     dump($matpe->getInvoice(13423);
 }
 ```
-## Update a contact
+## Update an invoice
 
 ```php
 <?php

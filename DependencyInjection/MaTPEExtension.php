@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tilotiti
- * Date: 20/02/2017
- * Time: 16:21
- */
 
 namespace Tiloweb\MaTPEBundle\DependencyInjection;
 
@@ -15,15 +9,16 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class MaTPEExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container) {
+    public function load(array $configs, ContainerBuilder $container)
+    {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load("services.yml");
+        $loader->load('services.yml');
 
         $configuration = new Configuration();
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        foreach($config as $name => $node) {
+        foreach ($config as $name => $node) {
             $container->setParameter('ma_tpe.'.$name, $node);
         }
 
