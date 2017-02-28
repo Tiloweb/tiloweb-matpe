@@ -1,0 +1,4 @@
+services:
+    matpe:
+        class: Tiloweb\MaTPEBundle\Service\MaTPEService
+        arguments: ["%ma_tpe.login%", "%ma_tpe.key%", "%ma_tpe.firm%"]

@@ -1,0 +1,34 @@
+{
+  "name": "tiloweb/matpe-bundle",
+  "description": "Add automated API integration as a Symfony Service",
+  "type": "symfony-bundle",
+  "keywords": [
+    "matpe",
+    "api",
+    "symfony3",
+    "bundle",
+    "tiloweb"
+  ],
+  "licence": "MIT",
+  "authors": [
+    {
+      "name": "Thibault HENRY",
+      "email": "thibault@henry.pro",
+      "homepage": "https://www.tiloweb.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.3",
+    "symfony/framework-bundle": ">=3.1",
+    "symfony/cache": "^3.2"
+  },
+  "autoload": {
+    "psr-0": {
+      "Tiloweb\\MaTPEBundle\\": ""
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "target-dir": "Tiloweb/MaTPEBundle"
+}
