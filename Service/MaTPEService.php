@@ -184,4 +184,18 @@ class MaTPEService
 
         return $this->getInvoice($id);
     }
+
+    /*
+     * Products
+     */
+
+    /**
+     * List MaTPE Products.
+     *
+     * @return array
+     */
+    public function listProducts()
+    {
+        return $this->request('GET', '/products');
+    }
 }
