@@ -93,9 +93,10 @@ public function MaTPEAction() {
     $matpe = $this->get("matpe");
     
     dump($matpe->createCustomer(array(
-        'name' => 'New Contact', // Required
+        'last_name' => 'Doe', // Required
+        'first_name' => 'John', // Required
         'email' => 'fakemail@test.com',
-        'contry_code' => 'fr' // Required
+        'country' => 'fr' // Required
     )));
 }
 ```
