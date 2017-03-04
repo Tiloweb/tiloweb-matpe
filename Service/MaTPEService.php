@@ -73,11 +73,13 @@ class MaTPEService
     /**
      * List MaTPE Customers.
      *
+     * @param array $parameters
+     *
      * @return array
      */
-    public function listCustomers()
+    public function listCustomers(array $parameters = [])
     {
-        return $this->request('GET', '/customers');
+        return $this->request('GET', '/customers', $parameters);
     }
 
     /**
