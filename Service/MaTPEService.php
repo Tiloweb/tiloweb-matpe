@@ -54,7 +54,7 @@ class MaTPEService
 
             if (isset($req_json['errors'])) {
                 foreach ($req_json['errors'] as $error => $message) {
-                    throw new \Exception($error.' : '.$message[0].' '.self::API_URL.$this->firm.$endpoint.'.json'.'?'.http_build_query($data));
+                    throw new \Exception($error.' : '.$message.' '.self::API_URL.$this->firm.$endpoint.'.json'.'?'.http_build_query($data));
                 }
             } else {
                 return $req_json;
