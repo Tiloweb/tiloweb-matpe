@@ -47,6 +47,10 @@ class MaTPEService
 
         $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
+        if (401 === $http_code) {
+            throw new \Exception("HTTP Basic: Access denied.");
+        }
+
         curl_close($curl);
 
         if ($response) {
