@@ -128,19 +128,26 @@ class MaTPEService
     /**
      * List all invoices on MaTPE.
      *
-     * @param $customer integer
+     * @param $customerId integer
+     * @param $paymentRef string
      *
      * @return array
      */
-    public function listInvoices($customer = 0)
+    public function listInvoices($customerId = 0, $paymentRef = null)
     {
-        if ($customer) {
-            return $this->request('GET', '/invoices', array(
-                'customer_id' => $customer,
-            ));
-        } else {
-            return $this->request('GET', '/invoices');
+        $parameters = [];
+
+        if (0 !== $customerId) {
+            $parameters['customer_id'] = $customerId;
         }
+
+        if (null !== $paymentRef) {
+            $parameters['payment_ref'] = $paymentRef;
+        }
+
+        return $this->request('GET', '/invoices',
+            $parameters
+        );
     }
 
     /**
