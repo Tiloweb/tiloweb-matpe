@@ -9,6 +9,7 @@ class MaTPEService
     private $firm;
 
     const API_URL = 'https://www.facturation.pro/firms/';
+    const SHORT_API_URL = 'https://www.facturation.pro/';
 
     public function __construct($login, $key, $firm)
     {
@@ -17,20 +18,25 @@ class MaTPEService
         $this->firm = $firm;
     }
 
-    private function request($method, $endpoint, $data = array())
+    private function request($method, $endpoint, $data = array(), $shortPath = false)
     {
+        $path = self::API_URL.$this->firm.$endpoint.'.json';
+        if (true === $shortPath) {
+            $path = self::SHORT_API_URL.$endpoint.'.json';
+        }
+
         switch ($method) {
             case 'POST':
             case 'PATCH':
             case 'DELETE':
-                $curl = curl_init(self::API_URL.$this->firm.$endpoint.'.json');
+                $curl = curl_init($path);
 
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
                 break;
             case 'GET':
             default:
-                $curl = curl_init(self::API_URL.$this->firm.$endpoint.'.json'.'?'.http_build_query($data));
+                $curl = curl_init($path.'?'.http_build_query($data));
 
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
                 break;
@@ -210,5 +216,15 @@ class MaTPEService
     public function listProducts()
     {
         return $this->request('GET', '/products');
+    }
+
+    /**
+     * Get account information.
+     *
+     * @return array
+     */
+    public function getAccount()
+    {
+        return $this->request('GET', '/account', [], true);
     }
 }
