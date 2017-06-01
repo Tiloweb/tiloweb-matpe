@@ -2,6 +2,8 @@
 
 namespace Tiloweb\MaTPEBundle\Service;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class MaTPEService
 {
     private $login;
