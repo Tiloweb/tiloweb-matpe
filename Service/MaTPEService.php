@@ -203,6 +203,39 @@ class MaTPEService
 
         return $this->getInvoice($id);
     }
+    
+    /**
+     * Download Invoice from MaTPE
+     *
+     * @param $id
+     *
+     * @return Response
+     */
+    public function downloadInvoice($id) {
+        $curl = curl_init('https://www.facturation.pro/firms/'.$this->firm.'/invoices/'.$id.'.pdf');
+
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+
+        curl_setopt($curl, CURLOPT_USERPWD, $this->login.':'.$this->key);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+            'User-Agent: Fidcar.com (thibault@fidcar.com)',
+            'Content-type: application/json; charset=utf-8',
+        ));
+
+        $response = curl_exec($curl);
+
+        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        if(200 != $http_code) {
+            throw new \Exception("HTTP Basic : Error ".$http_code.".");
+        }
+
+        return new Response($response, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition: inline; Bill '.$id.'.pdf'
+        ]);
+    }
 
     /*
      * Products
